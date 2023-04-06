@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws IOException, SQLException {
-        String url = "jdbc:mysql://localhost:3306/db090";
+        String url = "jdbc:mysql://localhost:PORTA/BANCO";
         String user = "root";
         String pass = "@soma+";
 
@@ -27,7 +27,7 @@ public class Main {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             //Cria a conexão com a planilha e seleciona a primeira aba
-            FileInputStream inputStream = new FileInputStream("C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova Pasta\\planilha.xlsx");
+            FileInputStream inputStream = new FileInputStream("LOCAL-ARQUIVO");
             XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
 

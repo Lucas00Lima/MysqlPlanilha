@@ -19,7 +19,7 @@ public class PercorrerPlanilha {
         List<DadosPlanilha> dados = new ArrayList<>();
 
         //Recuperando o arquivo
-        @Cleanup FileInputStream file = new FileInputStream("C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova Pasta\\planilha.xlsx");
+        @Cleanup FileInputStream file = new FileInputStream("LOCAL ARQUIVO");
         Workbook workbook = new XSSFWorkbook(file);
 
         //Setando a aba
@@ -59,7 +59,6 @@ public class PercorrerPlanilha {
     {
         return IteratorUtils.toList(iterator);
     }
-
     //Percorre a array e imprime
     public void imprimir(List<DadosPlanilha> dado)
     {
