@@ -5,11 +5,11 @@ import lombok.Data;
 @Builder
 public class DadosPlanilha {
     //Pegando os dadas da planilha
-    int codigo;
+    String codigo;
     String categoria;
-    int valor;
-    int origem;
-    int tipo;
+    String valor;
+    String origem;
+    String tipo;
     String obs;
     String ncm;
     String cfop;

@@ -2,10 +2,7 @@ package org.example;
 
 import lombok.Cleanup;
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +16,7 @@ public class PercorrerPlanilha {
         List<DadosPlanilha> dados = new ArrayList<>();
 
         //Recuperando o arquivo
-        @Cleanup FileInputStream file = new FileInputStream("LOCAL ARQUIVO");
+        @Cleanup FileInputStream file = new FileInputStream("C:\\Users\\lukin\\OneDrive\\Área de Trabalho\\Nova pasta\\planilha1.xlsx");
         Workbook workbook = new XSSFWorkbook(file);
 
         //Setando a aba
@@ -32,24 +29,24 @@ public class PercorrerPlanilha {
         rows.forEach(row ->{
             //Setando as celulas
             List<Cell> cells = (List<Cell>) toList(row.cellIterator());
-
+            DataFormatter formatter =  new DataFormatter();
             //Atribuindo os valores
             DadosPlanilha dado = DadosPlanilha.builder()
-                .codigo((int)cells.get(0).getNumericCellValue())
-                .categoria(cells.get(1).getStringCellValue())
-                .valor(Integer.parseInt(Integer.toString((int)cells.get(2).getNumericCellValue())))
-                .origem((int)cells.get(3).getNumericCellValue())
-                .tipo((int)cells.get(4).getNumericCellValue())
-                .obs(cells.get(5).getStringCellValue())
-                .ncm(cells.get(6).getStringCellValue())
-                .cfop(cells.get(7).getStringCellValue())
-                .cest(cells.get(8).getStringCellValue())
-                .cst(cells.get(9).getStringCellValue())
-                .icms(cells.get(10).getStringCellValue())
-                .pisC(cells.get(11).getStringCellValue())
-                .pisA(cells.get(12).getStringCellValue())
-                .cofinsC(cells.get(13).getStringCellValue())
-                .cofinsA(cells.get(14).getStringCellValue())
+                .codigo(formatter.formatCellValue(cells.get(0)))
+                .categoria(formatter.formatCellValue(cells.get(1)))
+                .valor(formatter.formatCellValue(cells.get(2)))
+                .origem(formatter.formatCellValue(cells.get(3)))
+                .tipo(formatter.formatCellValue(cells.get(4)))
+                .obs(formatter.formatCellValue(cells.get(5)))
+                .ncm(formatter.formatCellValue(cells.get(6)))
+                .cfop(formatter.formatCellValue(cells.get(7)))
+                .cest(formatter.formatCellValue(cells.get(8)))
+                .cst(formatter.formatCellValue(cells.get(9)))
+                .icms(formatter.formatCellValue(cells.get(10)))
+                .pisC(formatter.formatCellValue(cells.get(11)))
+                .pisA(formatter.formatCellValue(cells.get(12)))
+                .cofinsC(formatter.formatCellValue(cells.get(13)))
+                .cofinsA(formatter.formatCellValue(cells.get(14)))
                 .build();
                 dados.add(dado);
         });
@@ -64,6 +61,11 @@ public class PercorrerPlanilha {
     {
         dado.forEach(System.out::println);
     }
-}
 
+    public static void main(String[] args) throws IOException {
+        PercorrerPlanilha percorrerPlanilha = new PercorrerPlanilha();
+        List<DadosPlanilha> dado = percorrerPlanilha.criar();
+        percorrerPlanilha.imprimir(dado);
+    }
+}
 
