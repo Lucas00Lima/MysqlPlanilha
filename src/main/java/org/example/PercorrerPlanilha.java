@@ -27,7 +27,7 @@ public class PercorrerPlanilha {
         rows.remove(0);
 
         rows.forEach(row ->{
-            //Setando as celulas
+            //Setando as celulas e formatando
             List<Cell> cells = (List<Cell>) toList(row.cellIterator());
             DataFormatter formatter =  new DataFormatter();
             //Atribuindo os valores
@@ -60,12 +60,6 @@ public class PercorrerPlanilha {
     public void imprimir(List<DadosPlanilha> dado)
     {
         dado.forEach(System.out::println);
-    }
-
-    public static void main(String[] args) throws IOException {
-        PercorrerPlanilha percorrerPlanilha = new PercorrerPlanilha();
-        List<DadosPlanilha> dado = percorrerPlanilha.criar();
-        percorrerPlanilha.imprimir(dado);
     }
 }
 
